@@ -1,26 +1,64 @@
-# PRUEBA DATA SCIENTIST R5 #
+<div align="center" id="top"> 
+  &#xa0;
 
-Los principales proyectos de R5 vienen encaminados al sector vehículos. Usted deberá apoyarse de sus conocimientos para cumplir el siguiente objetivo:
+  <!-- <a href="https://r5dschallenge_lmgarzon.netlify.app">Demo</a> -->
+</div>
 
-* **Reducir perdidas por fraude en las reclamaciones de siniestro**
+<h1 align="center">R5 Ds Challenge</h1>
 
-¿Qué debe incluir tu solución?
+<p align="center">
+  <a href="#dart-about">About</a> &#xa0; | &#xa0; 
+  <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
+  <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
+  <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
+  <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
+  <a href="#memo-license">License</a> &#xa0; | &#xa0;
+  <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">Author</a>
+</p>
 
-1) Cree una base de datos en PostgreSql (puede ser local) que debe contener una tabla llamada "fraudes" con la información contenida en ./data/fraude.csv. (el archivo ./data/create_table.txt te ayudará)
+<br>
 
-2) Con su base de datos cargada, replique la siguiente salida sin usar subconsultas.
+## 🎯 About ##
+En este proyecto se quiere reducir las pérdidas por fraudes debidas a siniestros viales teniendo en cuenta una base de datos con 15,420 y 33 variables.
+## ✨ Features ##
 
-![Salidaesperada](./data/salida_esperada.png)
+✔️ Análisis descriptiva y creación del modelo; esta parte se encuentra en el archivo **index.ipynb** aquí se hace todo el proceso desde: la lectura, depuración, análisis y construcción del modelo, y a lo largo de este se van describiendo los pasos.
 
-3) conéctese desde Python a la tabla fraudes (la de la base de datos creada, no directamente del .csv) y léala con un query que la traiga lo más limpia posible.
+Al final de todo se eligió el modelo XGBoost, ya que arrojo las mejores métricas y el tiempo de ejecución no es tan largo. Por otro lado cabe resaltar que la precisión y sobretodo el recall para este caso no fueron muy buenas, para futuros modelo sería interesante aplicar métodos de reducción de la dimensionalidad antes de probar los algoritmos de clasificación, evaluar las diferentes variables y trabajar algunos métodos de balanceo, ya que no es muy común que hayan casos de fraudes. También seria interesante reclasificar las categorías de las variables de entrada. 
 
-4) en la carpeta *./notebooks* desarrolle la solución que debe contener un análisis descriptivo de los datos y un modelo de machine learning que ayude a cumplir los objetivos (no se enrede mucho con hacer el mejor modelo, enfóquese en que sea algo funcional).
+✔️ Automatización del trains y predict se encuentran en los archivos **train.py** y **predict.py**, los resultados de este paso se encuentran en el archivo **model_trainer_execute.ipynb** y el modelo se encuentra en la carpeta **./models/model.pickle**
 
-5) automaticé su pipeline de entrenamiento en el archivo *train.py*, imprimiendo por consola o exportando los principales hallazgos. Exporte el modelo y lo guarda en la carpeta *./models*. En el archivo *predict.py* escriba el pipeline de predicción, pruébelo con el caso particular que usted desee e imprima por consola este caso y su valor predicho (en probabilidades puede ser).
+✔️ Como utilizar este modelo para reducir las pérdidas de fraude; Seria importante definir un periodo, por ejemplo cada mes se van a revisar los accidentes registrados para ingresar estos datos y ver las predicciones del modelo para categorizar este accidente como un fraude o no. En caso de ser fraude hacer un estudio más sofisticado con esas personas
 
-6) Comenta como utilizaría el negocio este modelo para reducir las perdidas por fraude, como lo evaluarías frente a las necesidades del negocio (diferente a las métricas ya usadas) y comenta brevemente como llevarías a producción este proyecto.
+✔️ Para llevar este modelo a producción seguiría los siguientes pasos:
+Con el modelo entrenado y exportado en .pickle, cargo el repositorio a un proveedor de la nube (Google, AWS, Azure,...) mediante streamlit expongo un API la cual va a consumir el cliente y este a su vez consume el modelo.
 
-* Nota1: Crea un repositorio que contenga en el readme.md las instrucciones necesarias para instalar y correr tu proyecto.
+Este modelo debe ser reentrenar cada cierto periodo, para evaluar sus métricas y en caso de que se presente desmejoras evaluar de nuevo otro tipo de modelo.
+
+## ✅ Instrucciones para ejecutar el proyecto ##
+
+Before starting 🏁, you need to have 
+[Git](https://git-scm.com) and 
+[Python](https://www.python.org/) installed.
+[Pip](https://pip.pypa.io/en/stable/cli/pip_install/) installed.
+## 🏁 Starting ##
+
+```bash
+# Clone this project
+$ git clone https://github.com/marcelamu9/r5-ds-challenge_lmgarzon
+
+# Access
+$ cd r5-ds-challenge_lmgarzon
+
+# Install dependencies
+$ pip -r requirements.txt
 
 
-* Nota2: Muchos éxitos!, cualquier duda puedes escribirme por wp: 3113716605, en serio, cualquier duda.
+```
+
+&#xa0;
+
+
+
+
+<a href="#top">Back to top</a>
